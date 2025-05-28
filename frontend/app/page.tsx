@@ -7,6 +7,7 @@ import Sidebar from "@/components/home/Sidebar";
 import TopNav from "@/components/home/TopNav";
 import TrendingResults from "@/components/home/TrendingResults";
 import EpisodesGrid from "@/components/home/EpisodesGrid";
+import { config } from "@/lib/config";
 
 type Episode = {
   trackId: string;
@@ -52,7 +53,9 @@ export default function Page() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/search?term=" + encodeURIComponent(term));
+      const res = await fetch(
+        `${config.backendUrl}/search?term=` + encodeURIComponent(term)
+      );
       if (!res.ok) throw new Error("Failed to fetch");
       const data = await res.json();
       setResults(data.results || []);
@@ -77,7 +80,7 @@ export default function Page() {
 
       if (podcastIds) {
         setLoadingEpisodes(true);
-        fetch(`/api/episodes?ids=${podcastIds}`)
+        fetch(`${config.backendUrl}/episodes?ids=${podcastIds}`)
           .then((res) => res.json())
           .then(
             (
