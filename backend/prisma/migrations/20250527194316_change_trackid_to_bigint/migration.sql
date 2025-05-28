@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Episode" ALTER COLUMN "trackId" SET DATA TYPE BIGINT;
