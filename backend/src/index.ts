@@ -1,7 +1,7 @@
 import buildServer from "./server";
 
 const start = async () => {
-  const fastify = buildServer();
+  const fastify = await buildServer();
   const port = process.env.PORT ? parseInt(process.env.PORT) : 4000;
 
   try {
